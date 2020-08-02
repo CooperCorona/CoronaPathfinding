@@ -5,6 +5,13 @@ public struct StateTransition<State> {
     public let state:State
     /// The cost of moving to this state.
     public let moveCost:Double
+
+    /// Initializes a StateTransition instance with the given state and move cost.
+    public init(state:State, moveCost:Double) {
+        self.state = state
+        self.moveCost = moveCost
+    }
+
 }
 
 /// Provides states and costs of moving between them to a `APathfinder` instance.
