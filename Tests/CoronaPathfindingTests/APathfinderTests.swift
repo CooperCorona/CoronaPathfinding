@@ -146,4 +146,27 @@ final class APathfinderTests: XCTestCase {
         }
     }
 
+    func testDijkstra() {
+        let dataSource = GridDataSource(width: 5, height: 4)
+        dataSource.addWall(x: 1, y: 2)
+        dataSource.addWall(x: 1, y: 1)
+        dataSource.addWall(x: 2, y: 1)
+        dataSource.addWall(x: 3, y: 1)
+        dataSource.addWall(x: 3, y: 2)
+        dataSource.addWall(x: 1, y: 3)
+        dataSource.addWall(x: 0, y: 2)
+        let weightFinder = DijkstraWeightfinder(dataSource: dataSource)
+        let weights = weightFinder.findWeights(start: IntPoint(x: 4, y: 0))
+        print(dataSource)
+        for row in 0..<dataSource.height {
+            for column in 0..<dataSource.width {
+                if let weight = weights[IntPoint(x: column, y: row)] {
+                    print("(\(column), \(row)): \(weight)")
+                } else {
+                    print("(\(column), \(row)): nil")
+                }
+            }
+        }
+    }
+
 }
